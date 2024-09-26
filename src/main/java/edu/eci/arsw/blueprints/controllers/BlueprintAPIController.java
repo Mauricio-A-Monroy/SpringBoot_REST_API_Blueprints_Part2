@@ -44,5 +44,14 @@ public class BlueprintAPIController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> addNewBluePrnt(@RequestBody Blueprint blueprint){
+        try {
+            blueprintsServices.addNewBlueprint(blueprint);
+        } catch (BlueprintPersistenceException e) {
+            return new ResponseEntity<>("Plano no creado",HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }
 
