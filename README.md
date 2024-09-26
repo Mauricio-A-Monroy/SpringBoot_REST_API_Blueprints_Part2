@@ -110,6 +110,7 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 
 ![image](https://github.com/user-attachments/assets/ff5772f2-0589-44cd-8e74-9e38d3d6cdad)
 
+![image](https://github.com/user-attachments/assets/ba523292-02b0-4e08-b2ac-7b39a2409a4d)
 
 
 
