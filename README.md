@@ -92,6 +92,25 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 
 6. Modifique el controlador para que ahora, acepte peticiones GET al recurso /blueprints/{author}/{bpname}, el cual retorne usando una representación jSON sólo UN plano, en este caso el realizado por {author} y cuyo nombre sea {bpname}. De nuevo, si no existe dicho autor, se debe responder con el código de error HTTP 404. 
 
+```java
+    @RequestMapping(value = "{author}/{bpname}", method = RequestMethod.GET)
+    public ResponseEntity<?> getBlueprintsByAuthor(@PathVariable String author,
+						   @PathVariable String bpname){
+	try {
+	    return new ResponseEntity<>(blueprintsServices.getBlueprint(author, bpname), HttpStatus.ACCEPTED);
+	} catch (BlueprintNotFoundException e) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+    }       
+```
+
+![image](https://github.com/user-attachments/assets/4905186a-6bbf-42b5-b586-71730b8f4cf5)
+
+![image](https://github.com/user-attachments/assets/94723064-dbea-4414-998b-24a5cbee3c2a)
+
+![image](https://github.com/user-attachments/assets/ff5772f2-0589-44cd-8e74-9e38d3d6cdad)
+
+
 
 
 ### Parte II
