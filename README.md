@@ -51,7 +51,7 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 	}
 
 	```
-	* Haga que en esta misma clase se inyecte el bean de tipo BlueprintServices (al cual, a su vez, se le inyectarán sus dependencias de persisntecia y de filtrado de puntos).
+	* Haga que en esta misma clase se inyecte el bean de tipo BlueprintServices (al cual, a su vez, se le inyectarán sus dependencias de persistencia y de filtrado de puntos).
 
 ![image](https://github.com/user-attachments/assets/6eb4d9c0-d628-4d7e-b32b-ee42b802204b)
 
@@ -130,8 +130,18 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
         }        
  	
 	}
-	```	
-
+	```
+```java
+@RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> addNewBluePrint(@RequestBody Blueprint blueprint){
+        try {
+            blueprintsServices.addNewBlueprint(blueprint);
+        } catch (BlueprintPersistenceException e) {
+            return new ResponseEntity<>("Plano no creado", HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }      
+```
 
 2.  Para probar que el recurso ‘planos’ acepta e interpreta
     correctamente las peticiones POST, use el comando curl de Unix. Este
