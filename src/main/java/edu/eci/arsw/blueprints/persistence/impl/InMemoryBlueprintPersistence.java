@@ -28,9 +28,16 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
 
     public InMemoryBlueprintPersistence() {
         //load stub data
-        Point[] pts=new Point[]{new Point(140, 140),new Point(115, 115)};
-        Blueprint bp=new Blueprint("_authorname_", "_bpname_ ",pts);
-        blueprints.put(new Tuple<>(bp.getAuthor(),bp.getName()), bp);
+        Point[] pts1=new Point[]{new Point(140, 140),new Point(115, 115)};
+        Blueprint bp1=new Blueprint("Felipe", "plano0",pts1);
+        Point[] pts2=new Point[]{new Point(60, 20),new Point(100, 215)};
+        Blueprint bp2=new Blueprint("Carlos", "plano1",pts2);
+        Point[] pts3=new Point[]{new Point(30, 200),new Point(95, 20)};
+        Blueprint bp3=new Blueprint("Carlos", "plano2",pts3);
+
+        blueprints.put(new Tuple<>(bp1.getAuthor(),bp1.getName()), bp1);
+        blueprints.put(new Tuple<>(bp2.getAuthor(),bp2.getName()), bp2);
+        blueprints.put(new Tuple<>(bp3.getAuthor(),bp3.getName()), bp3);
         
     }    
     
@@ -46,7 +53,11 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
 
     @Override
     public Blueprint getBlueprint(String author, String bprintname) throws BlueprintNotFoundException {
-        return blueprints.get(new Tuple<>(author, bprintname));
+        Blueprint bp = blueprints.get(new Tuple<>(author, bprintname));
+        if (bp == null){
+            throw new BlueprintNotFoundException("No existes el plano");
+        }
+        return bp;
     }
 
     @Override
