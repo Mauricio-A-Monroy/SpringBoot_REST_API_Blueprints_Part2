@@ -66,4 +66,21 @@ public class BlueprintsServices {
         bp.setPoints(newPoints);
     }
 
+    public int testThreads(){
+        ArrayList<BPThread> threads = new ArrayList<>();
+        for(int i = 3; i < 103; i++){
+            Point[] pts=new Point[]{new Point(140, 140),new Point(115, 115)};
+            threads.add(new BPThread(new Blueprint("Carlos", "plano" + i, pts), this));
+            threads.get(i-3).start();
+        }
+        for(int i = 0; i < 100; i++){
+            try {
+                threads.get(i).join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return getAllBlueprints().size();
+    }
+
 }

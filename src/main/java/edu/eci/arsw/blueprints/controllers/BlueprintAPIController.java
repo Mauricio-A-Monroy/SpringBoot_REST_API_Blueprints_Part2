@@ -30,7 +30,6 @@ public class BlueprintAPIController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getAllBlueprints(){
-        System.out.println(blueprintsServices.getAllBlueprints().size());
         return new ResponseEntity<>(blueprintsServices.getAllBlueprints(), HttpStatus.ACCEPTED);
     }
 
@@ -66,5 +65,9 @@ public class BlueprintAPIController {
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
+    @RequestMapping(value = "test", method = RequestMethod.GET)
+    public ResponseEntity<?> test(){
+        return new ResponseEntity<>(blueprintsServices.testThreads(), HttpStatus.ACCEPTED);
+    }
 }
 

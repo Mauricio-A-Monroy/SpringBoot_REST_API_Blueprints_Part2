@@ -31,11 +31,6 @@ public class BlueprintsAPIApplication {
 			for (String beanName : beanNames) {
 				System.out.println(beanName);
 			}
-
-			for(int i = 0; i < 100; i++){
-				BPThread thread = new BPThread(new Blueprint("Carlos", "plano"+i));
-				thread.start();
-			}
 		};
 	}
 }
