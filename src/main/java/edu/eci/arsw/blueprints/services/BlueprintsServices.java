@@ -61,4 +61,9 @@ public class BlueprintsServices {
         return bpf.filterBlueprints(bpp.getBlueprintsByAuthor(author));
     }
 
+    public void updateBlueprint(String author, String name, List<Point> newPoints) throws BlueprintNotFoundException {
+        Blueprint bp = bpp.getBlueprint(author, name);
+        bp.setPoints(newPoints);
+    }
+
 }

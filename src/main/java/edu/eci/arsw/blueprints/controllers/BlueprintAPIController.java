@@ -6,6 +6,7 @@
 package edu.eci.arsw.blueprints.controllers;
 
 import edu.eci.arsw.blueprints.model.Blueprint;
+import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.services.BlueprintsServices;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  *
@@ -49,5 +52,18 @@ public class BlueprintAPIController {
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @RequestMapping(value = "{author}/{bpname}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateBluePrint(@PathVariable String author,
+                                             @PathVariable String bpname,
+                                             @RequestBody List<Point> newPoints){
+        try {
+            blueprintsServices.updateBlueprint(author, bpname, newPoints);
+        } catch (BlueprintNotFoundException e) {
+            return new ResponseEntity<>("Plano no actualizado",HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
 }
 
