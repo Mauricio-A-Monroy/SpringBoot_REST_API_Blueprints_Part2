@@ -1,5 +1,6 @@
 package edu.eci.arsw.blueprintsapi;
 
+import edu.eci.arsw.blueprints.model.Blueprint;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +8,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"edu.eci.arsw.blueprints"})
@@ -29,6 +32,10 @@ public class BlueprintsAPIApplication {
 				System.out.println(beanName);
 			}
 
+			for(int i = 0; i < 100; i++){
+				BPThread thread = new BPThread(new Blueprint("Carlos", "plano"+i));
+				thread.start();
+			}
 		};
 	}
 }
