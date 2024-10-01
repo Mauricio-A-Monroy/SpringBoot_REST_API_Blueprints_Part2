@@ -22,7 +22,7 @@ import java.util.List;
  * @author hcadavid
  */
 @RestController
-@RequestMapping(value = "/blueprints")
+    @RequestMapping(value = "/blueprints")
 public class BlueprintAPIController {
 
     @Autowired
@@ -68,6 +68,12 @@ public class BlueprintAPIController {
     @RequestMapping(value = "test", method = RequestMethod.GET)
     public ResponseEntity<?> test(){
         return new ResponseEntity<>(blueprintsServices.testThreads(), HttpStatus.ACCEPTED);
+    }
+
+    @RequestMapping(value = "/updates", method = RequestMethod.GET)
+    public ResponseEntity<?> getUpdateLog() {
+        List<String> updateLog = blueprintsServices.testUpdateWithThreads();
+        return new ResponseEntity<>(updateLog, HttpStatus.ACCEPTED);
     }
 }
 

@@ -14,7 +14,6 @@ import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
 
 import java.util.*;
 
-import edu.eci.arsw.blueprints.persistence.impl.Tuple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,10 +66,10 @@ public class BlueprintsServices {
     }
 
     public int testThreads(){
-        ArrayList<BPThread> threads = new ArrayList<>();
+        ArrayList<BPThreadAddTest> threads = new ArrayList<>();
         for(int i = 3; i < 103; i++){
             Point[] pts=new Point[]{new Point(140, 140),new Point(115, 115)};
-            threads.add(new BPThread(new Blueprint("Carlos", "plano" + i, pts), this));
+            threads.add(new BPThreadAddTest(new Blueprint("Carlos", "plano" + i, pts), this));
             threads.get(i-3).start();
         }
         for(int i = 0; i < 100; i++){
@@ -81,6 +80,31 @@ public class BlueprintsServices {
             }
         }
         return getAllBlueprints().size();
+    }
+
+    public List<String> testUpdateWithThreads(){
+        ArrayList<BPThreadUpdateTest> threads = new ArrayList<>();
+        List<String> updateLog = new ArrayList<>();
+
+        for(int i = 0; i < 5; i++){
+            Point[] pts=new Point[]{new Point(i*10 + 1, i*20 + 2),new Point(i*5 + 3, i*11 + 4)};
+            threads.add(new BPThreadUpdateTest("Carlos", "plano1", this, List.of(pts)));
+            threads.get(i).start();
+        }
+        for(int i = 0; i < 5; i++){
+            try {
+                threads.get(i).join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        for(int i = 0; i < 5; i++){
+            updateLog.add(threads.get(i).getUpdateLog());
+        }
+
+        return updateLog;
+
     }
 
 }
