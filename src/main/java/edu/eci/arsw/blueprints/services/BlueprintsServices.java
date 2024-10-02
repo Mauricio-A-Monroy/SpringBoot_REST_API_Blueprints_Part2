@@ -60,9 +60,10 @@ public class BlueprintsServices {
         return bpf.filterBlueprints(bpp.getBlueprintsByAuthor(author));
     }
 
-    public void updateBlueprint(String author, String name, List<Point> newPoints) throws BlueprintNotFoundException {
+    public synchronized void updateBlueprint(String author, String name, List<Point> newPoints) throws BlueprintNotFoundException {
         Blueprint bp = bpp.getBlueprint(author, name);
         bp.setPoints(newPoints);
+        System.out.println(bp.getPoints());
     }
 
     public int testThreads(){
@@ -86,7 +87,7 @@ public class BlueprintsServices {
         ArrayList<BPThreadUpdateTest> threads = new ArrayList<>();
         List<String> updateLog = new ArrayList<>();
 
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 100; i++){
             Point[] pts=new Point[]{new Point(i*10 + 1, i*20 + 2),new Point(i*5 + 3, i*11 + 4)};
             threads.add(new BPThreadUpdateTest("Carlos", "plano1", this, List.of(pts)));
             threads.get(i).start();

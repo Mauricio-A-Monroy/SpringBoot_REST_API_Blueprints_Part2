@@ -33,6 +33,15 @@ public class BlueprintAPIController {
         return new ResponseEntity<>(blueprintsServices.getAllBlueprints(), HttpStatus.ACCEPTED);
     }
 
+    @RequestMapping(value = "{author}", method = RequestMethod.GET)
+    public ResponseEntity<?> getBlueprintsByAuthor(@PathVariable String author){
+        try {
+            return new ResponseEntity<>(blueprintsServices.getBlueprintsByAuthor(author), HttpStatus.ACCEPTED);
+        } catch (BlueprintNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "{author}/{bpname}", method = RequestMethod.GET)
     public ResponseEntity<?> getBlueprintsByAuthor(@PathVariable String author,
                                                    @PathVariable String bpname){

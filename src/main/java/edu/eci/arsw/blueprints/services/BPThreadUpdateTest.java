@@ -25,13 +25,9 @@ public class BPThreadUpdateTest extends Thread {
 
     public void run(){
         try {
-            // Actualizar el blueprint con los nuevos puntos
             blueprintsServices.updateBlueprint(author, name, newPoints);
-
-            // Obtener el blueprint actualizado para imprimir su estado
             Blueprint updatedBlueprint = blueprintsServices.getBlueprint(author, name);
-
-            // Imprimir el estado actualizado del blueprint
+            System.out.println("Actualizado por " + Thread.currentThread().getName() + ": " + updatedBlueprint.getPoints().toString());
             updateLog += "Actualizado por " + Thread.currentThread().getName() + ": " + updatedBlueprint.getPoints().toString();
         } catch (BlueprintNotFoundException e) {
             System.out.println("Error al actualizar el blueprint: " + e.getMessage());
