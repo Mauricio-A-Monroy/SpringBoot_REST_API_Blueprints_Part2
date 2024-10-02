@@ -2,7 +2,7 @@
 
 ### Arquitecturas de Software
 
-
+### Mauricio Monroy y Samuel Rojas
 
 #### API REST para la gestión de planos.
 
@@ -169,6 +169,22 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 
 
 5. Agregue soporte al verbo PUT para los recursos de la forma '/blueprints/{author}/{bpname}', de manera que sea posible actualizar un plano determinado.
+
+**NOTA: ** Actualizamos únicamente los puntos de los planos.
+
+```	
+@RequestMapping(value = "{author}/{bpname}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateBluePrint(@PathVariable String author,
+                                             @PathVariable String bpname,
+                                             @RequestBody List<Point> newPoints){
+        try {
+            blueprintsServices.updateBlueprint(author, bpname, newPoints);
+        } catch (BlueprintNotFoundException e) {
+            return new ResponseEntity<>("Plano no actualizado",HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+```	
 
 
 ### Parte III
