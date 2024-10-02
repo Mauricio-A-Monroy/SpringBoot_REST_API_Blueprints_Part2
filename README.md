@@ -170,7 +170,7 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 
 5. Agregue soporte al verbo PUT para los recursos de la forma '/blueprints/{author}/{bpname}', de manera que sea posible actualizar un plano determinado.
 
-**NOTA: ** Actualizamos únicamente los puntos de los planos.
+**NOTA:** Actualizamos únicamente los puntos de los planos.
 
 ```	
 @RequestMapping(value = "{author}/{bpname}", method = RequestMethod.PUT)
