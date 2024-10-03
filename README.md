@@ -168,7 +168,7 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 ![image](https://github.com/user-attachments/assets/b6d43c92-c551-4f97-9c38-ec710a1ca95b)
 
 
-5. Agregue soporte al verbo PUT para los recursos de la forma '/blueprints/{author}/{bpname}', de manera que sea posible actualizar un plano determinado.
+4. Agregue soporte al verbo PUT para los recursos de la forma '/blueprints/{author}/{bpname}', de manera que sea posible actualizar un plano determinado.
 
 **NOTA:** Actualizamos únicamente los puntos de los planos.
 
@@ -184,7 +184,14 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
         }
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
-```	
+```
+
+![image](https://github.com/user-attachments/assets/aa16af37-47e7-4cd0-87b6-fa367d7273a8)
+
+![image](https://github.com/user-attachments/assets/02103545-fe86-4daf-b489-9015dea9a8c2)
+
+![image](https://github.com/user-attachments/assets/b454bc5f-7d4b-42a9-92d7-5659f6c0af8f)
+
 
 
 ### Parte III
